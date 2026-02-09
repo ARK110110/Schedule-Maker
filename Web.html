@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Maker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">Schedule Maker</div>
+    <div class="container">
+        <div class="left-panel">
+            <form id="scheduleForm">
+                <input type="date" id="date" required>
+                <input type="time" id="startTime" required>
+                <input type="time" id="endTime" required>
+                <input type="text" id="activity" placeholder="Aktivitas" required>
+                <textarea id="note" placeholder="Catatan (opsional)"></textarea>
+                <input type="text" id="category" placeholder="Kategori (e.g., Senin, Kerja)" required>
+                <div class="deadline-toggle" id="deadlineToggle">
+                    <input type="checkbox" id="isDeadline">
+                    <div class="toggle-slider"></div>
+                    <label for="isDeadline">Tampilkan Deadline</label>
+                </div>
+                <div class="priority-stars" id="priorityStars">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <div class="color-options">
+                    <button type="button" class="color-btn" style="background-color: #ff6b6b;" onclick="setColor('#ff6b6b')"></button>
+                    <button type="button" class="color-btn" style="background-color: #4ecdc4;" onclick="setColor('#4ecdc4')"></button>
+                    <button type="button" class="color-btn" style="background-color: #45b7d1;" onclick="setColor('#45b7d1')"></button>
+                    <button type="button" class="color-btn" style="background-color: #f9ca24;" onclick="setColor('#f9ca24')"></button>
+                    <button type="button" class="color-btn" style="background-color: #f0932b;" onclick="setColor('#f0932b')"></button>
+                    <input type="color" id="customColor" onchange="setColor(this.value)">
+                </div>
+                <button class="chosen" type="submit">Tambah Jadwal</button>
+            </form>
+        </div>
+        <div class="right-panel">
+            <div class="filter">
+                <select id="categoryFilter">
+                    <option value="">Semua Kategori</option>
+                </select>
+                <button class="clear-all-btn" onclick="clearAllSchedules()">Clear All</button>
+            </div>
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detail Task</h2>
+            <p id="modalTime"></p>
+            <p id="modalActivity"></p>
+            <p id="modalNote"></p>
+            <p id="modalCategory"></p>
+            <p id="modalDeadline"></p>
+            <label><input type="checkbox" id="modalCompleted"> Selesai</label>
+            <button id="editBtn">Edit</button>
+            <button id="deleteBtn">Hapus</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
